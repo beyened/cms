@@ -19,8 +19,5 @@ class Video extends Model
     public function tags(){
         return $this->morphToMany(Tags::class, 'taggable');
     }
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/master
 }
