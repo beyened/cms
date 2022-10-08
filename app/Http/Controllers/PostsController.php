@@ -104,14 +104,18 @@ class PostsController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $post = new Post;
-        $post->title = $request->title;
-        $post->body = $request->body;
-        $post->user_id = $request->user_id;
+//        $post = new Post;
+//        $post->title = $request->title;
+//        $post->body = $request->body;
+//        $post->user_id = $request->user_id;
+//
+//        $result = $post->save();
 
-        $result = $post->save();
-
-        if ($request){
+        $posts = Post::find($id);
+//        return $posts;
+        $result = $posts->update($request->all());
+//
+        if ($result){
 //            echo "success";
             return redirect('/posts');
         }else{
@@ -128,6 +132,20 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        // Soft delete
+//    $post = Post::find($id);
+//    $post->delete();
+//          OR
+//    Post::find($id)->delete();
+//          OR
+//    Post::where('id', '=', $id)->delete();
+//          OR
+      Post::destroy($id);
+
+//    return redirect('/posts');
+//          OR
+    return redirect()->route('posts.index')->with('status','Post Deleted');
+
     }
 }
