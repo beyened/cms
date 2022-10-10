@@ -10,11 +10,16 @@
 
         <li><a href="/posts/{{$post->id}}" >{{$post->title}}</a> |
             {{$post->body}} <a href="/posts/{{$post->id}}/edit" >Edit</a> |
-            <form method="POST" action='/posts/{{ $post->id }}'>
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="submitbtn" name="delete">Delete</button>
-            </form>
+{{--            <form method="POST" action='/posts/{{ $post->id }}'>--}}
+{{--                @csrf--}}
+{{--                @method('DELETE')--}}
+{{--                <button type="submit" class="submitbtn" name="delete">Delete</button>--}}
+{{--            </form>--}}
+
+            {!! Form::model($post, ['method' => 'DELETE', 'action' => ['PostsController@destroy', $post->id]]) !!}
+            {!! Form::submit('Delete') !!}
+            {!! Form::close() !!}
+
         </li>
 
     @endforeach

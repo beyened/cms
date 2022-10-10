@@ -4,9 +4,9 @@
 
     {!! Form::open(['method' => 'POST', 'action' => 'PostsController@store']) !!}
         {!!  Form::token() !!}
-        {!!  Form::label('title', 'Title', ['class' => 'awesome']) !!}
-        {!!  Form::text('title'); !!}
-        {!!  Form::label('body', 'Body', ['class' => 'awesome']) !!}
+        {!!  Form::label('title', 'Title: ', ['class' => 'form-control']) !!}
+        {!!  Form::text('title', null); !!}
+        {!!  Form::label('body', 'Body', ['class' => 'form-control']) !!}
         {!!  Form::text('body'); !!}
         {!!  Form::hidden('user_id', '1') !!}
         {!!  Form::submit('Submit'); !!}
