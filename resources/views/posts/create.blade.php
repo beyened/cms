@@ -2,9 +2,14 @@
 
 @section('content')
 
-    {!! Form::open(['url' => '/posts', 'method' => 'put']) !!}
-        echo Form::token();
-        echo Form::label('email', 'E-Mail Address', ['class' => 'awesome']);
+    {!! Form::open(['method' => 'POST', 'action' => 'PostsController@store']) !!}
+        {!!  Form::token() !!}
+        {!!  Form::label('title', 'Title', ['class' => 'awesome']) !!}
+        {!!  Form::text('title'); !!}
+        {!!  Form::label('body', 'Body', ['class' => 'awesome']) !!}
+        {!!  Form::text('body'); !!}
+        {!!  Form::hidden('user_id', '1') !!}
+        {!!  Form::submit('Submit'); !!}
     {!! Form::close() !!}
 
 {{--    <form method="post" action="/posts" >--}}

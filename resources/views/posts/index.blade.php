@@ -2,6 +2,8 @@
 
 @section('content')
 
+    <a href="posts/create" > Add posts </a>
+
 <ul>
 
     @foreach($posts as $post)
