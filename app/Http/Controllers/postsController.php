@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 
-class postsController extends Controller
+class PostsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,6 +15,10 @@ class postsController extends Controller
     public function index()
     {
         //
+//        return Post::all();
+        $posts = Post::all();
+
+        return view('posts.index', compact('posts'));
     }
 
     /**
@@ -24,6 +29,8 @@ class postsController extends Controller
     public function create()
     {
         //
+        return view('posts.create');
+
     }
 
     /**
@@ -34,7 +41,33 @@ class postsController extends Controller
      */
     public function store(Request $request)
     {
+
+        $this->validate($request,[
+            'title'=> 'required|max:5',
+            'body'=> 'required'
+        ]);
+
         //
+//        return $request->all();
+//        return $request->get('title');
+//        return $request->title;
+
+//        Post::create($request->all());
+
+        $post = new Post;
+        $post->title = $request->title;
+        $post->body = $request->body;
+        $post->user_id = $request->user_id;
+
+        $result = $post->save();
+
+        if ($request){
+//            echo "success";
+            return redirect('/posts');
+        }else{
+            echo "Error";
+        }
+
     }
 
     /**
@@ -46,6 +79,10 @@ class postsController extends Controller
     public function show($id)
     {
         //
+
+        $post = Post::find($id);
+//        return $post;
+        return view('posts.show', compact('post'));
     }
 
     /**
@@ -57,6 +94,10 @@ class postsController extends Controller
     public function edit($id)
     {
         //
+
+        $post = Post::findOrFail($id);
+
+        return view('posts.edit', compact('post'));
     }
 
     /**
@@ -69,6 +110,24 @@ class postsController extends Controller
     public function update(Request $request, $id)
     {
         //
+//        $post = new Post;
+//        $post->title = $request->title;
+//        $post->body = $request->body;
+//        $post->user_id = $request->user_id;
+//
+//        $result = $post->save();
+
+        $posts = Post::find($id);
+//        return $posts;
+        $result = $posts->update($request->all());
+//
+        if ($result){
+//            echo "success";
+            return redirect('/posts');
+        }else{
+            echo "Error";
+        }
+
     }
 
     /**
@@ -79,6 +138,20 @@ class postsController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        // Soft delete
+//    $post = Post::find($id);
+//    $post->delete();
+//          OR
+//    Post::find($id)->delete();
+//          OR
+//    Post::where('id', '=', $id)->delete();
+//          OR
+      Post::destroy($id);
+
+//    return redirect('/posts');
+//          OR
+    return redirect()->route('posts.index')->with('status','Post Deleted');
+
     }
 }
