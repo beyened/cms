@@ -41,5 +41,15 @@ class Post extends Model
           return $this->morphToMany(Tags::class, 'taggable');
       }
 
+      public function getPathAttribute($value){
+
+          return $this->directory . $value;
+      }
+
+//      public static function scopeLatest($query){
+//
+//          return $query->orderBy('id', 'asc')->get();
+//      }
+
 
 }

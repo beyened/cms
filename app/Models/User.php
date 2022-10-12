@@ -68,4 +68,14 @@ class User extends Authenticatable
         return $this->morphMany(Photo::class, 'imageable');
     }
 
+    //Accessor It helps to modify value when accessing
+    public function getNameAttribute($value){
+        return strtoupper($value);
+    }
+
+//mutators helps to modify while saving data in database
+    public function setNameAttribute($value){
+        $this->attributes['name'] = strtoupper($value);
+    }
+
 }

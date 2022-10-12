@@ -6,13 +6,18 @@
     <h2>Body </h2> {{$post->body}}
     <a href="{{route('posts.edit', $post->id)}}" >Edit </a>
 
-    <form method="POST" action="{{ route('posts.destroy', $post->id)}}">
-        @csrf
-        <input type="hidden" name="_method" value="DELETE">
-        <button type="submit" class="btn btn-danger btn-icon">
-            Delete
-        </button>
-    </form>
+{{--    <form method="POST" action="{{ route('posts.destroy', $post->id)}}">--}}
+{{--        @csrf--}}
+{{--        <input type="hidden" name="_method" value="DELETE">--}}
+{{--        <button type="submit" class="btn btn-danger btn-icon">--}}
+{{--            Delete--}}
+{{--        </button>--}}
+{{--    </form>--}}
+
+
+    {!! Form::model($post, ['method' => 'DELETE', 'action' => ['PostsController@destroy', $post->id]]) !!}
+    {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-icon']) !!}
+    {!! Form::close() !!}
 
 
 @endsection

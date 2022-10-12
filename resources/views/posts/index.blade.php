@@ -20,6 +20,7 @@
             {!! Form::submit('Delete') !!}
             {!! Form::close() !!}
 
+
         </li>
 
     @endforeach
