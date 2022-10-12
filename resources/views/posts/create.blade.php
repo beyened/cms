@@ -2,10 +2,19 @@
 
 @section('content')
 
-    {!! Form::open(['method' => 'POST', 'action' => 'PostsController@store']) !!}
+    {!! Form::open(['method' => 'POST', 'action' => 'PostsController@store', 'files' => true]) !!}
         {!!  Form::token() !!}
+
+    <div class="form-group">
+       {!!  Form::file('file', ['class'=>'form-control']) !!}
+    </div>
+
+    <div class="form-group">
         {!!  Form::label('title', 'Title: ', ['class' => 'form-control']) !!}
-        {!!  Form::text('title', null); !!}
+        {!!  Form::text('title', null, ['class'=>'form-control']) !!}
+    </div>
+
+
         {!!  Form::label('body', 'Body', ['class' => 'form-control']) !!}
         {!!  Form::text('body'); !!}
         {!!  Form::hidden('user_id', '1') !!}
