@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Post;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
@@ -63,6 +64,12 @@ Route::group(['middleware' == 'web'], function(){
        $user = User::find(1);
        echo $user->name;
     });
+
+    //Accessor It helps to get value by manipulate it, there is function on User Model
+//    Route::get('/getpath', function (){
+//        $post = Post::find(12);
+//        echo "/images/".$post->title;
+//    });
 
 
 //Mutators It helps to save value to database by manipulate it, there is function on User Model

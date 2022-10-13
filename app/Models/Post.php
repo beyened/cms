@@ -23,7 +23,7 @@ class Post extends Model
           'path'
           ];
 
-    // Inverse One-to-One Relationship
+//     Inverse One-to-One Relationship
       public function user(){
 
           return $this->belongsTo('App\Models\User');
@@ -33,33 +33,26 @@ class Post extends Model
       public function photos(){
 
           return $this->morphMany(Photo::class, 'imageable');
-
       }
 
     /**
      * Get all of the tags for the post.
      */
       public function tags(){
+
           return $this->morphToMany(Tags::class, 'taggable');
       }
-
-//      public function getPathAttribute($value){
-//
-//          return $this->directory . $value;
-//      }
 
 //      public static function scopeLatest($query){
 //
 //          return $query->orderBy('id', 'asc')->get();
 //      }
     public $directory = "/images/";
-//    public function getPathAttribute($value){
-//        $this->directory. $value;
-//    }
 
 //mutators helps to modify while saving data in database
-    public function getPathAttribute($value){
-        $this->directory.$value;
+    public function getPathAttribute($value)
+    {
+        return $this->directory . $value;
     }
 
 
