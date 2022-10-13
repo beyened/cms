@@ -45,6 +45,30 @@ class PostsController extends Controller
     public function store(CreatePostRequest $request)
     {
 
+        $input = $request->all();
+//        dd($input);
+////        $input['user_id'] = $request->user_id;
+
+        if($file = $request->file('file')){
+            $name = $file->getClientOriginalName();
+            $file->move('images', $name);
+            $input['path'] = $name;
+
+        }
+
+//        dd($input);
+
+        Post::create($input);
+
+//        return $request->file('file');
+//        $file = $request->file('file');
+//        echo $file->getClientOriginalName();
+//
+//        echo "<br>";
+//        echo $file->getSize();
+//        echo "<br>";
+//        echo $file->extension();
+
 
         // Validation
 //        $this->validate($request,[
@@ -59,19 +83,19 @@ class PostsController extends Controller
 
 //        Post::create($request->all());
 
-        $post = new Post;
-        $post->title = $request->title;
-        $post->body = $request->body;
-        $post->user_id = $request->user_id;
-
-        $result = $post->save();
-
-        if ($request){
-//            echo "success";
-            return redirect('/posts');
-        }else{
-            echo "Error";
-        }
+//        $post = new Post;
+//        $post->title = $request->title;
+//        $post->body = $request->body;
+//        $post->user_id = $request->user_id;
+//
+//        $result = $post->save();
+//
+//        if ($request){
+////            echo "success";
+//            return redirect('/posts');
+//        }else{
+//            echo "Error";
+//        }
 
     }
 

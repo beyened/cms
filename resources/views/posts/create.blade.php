@@ -14,12 +14,12 @@
         {!!  Form::text('title', null, ['class'=>'form-control']) !!}
     </div>
 
-
         {!!  Form::label('body', 'Body', ['class' => 'form-control']) !!}
         {!!  Form::text('body'); !!}
-        {!!  Form::hidden('user_id', '1') !!}
+        {!!  Form::hidden('user_id', 1) !!}
         {!!  Form::submit('Submit'); !!}
     {!! Form::close() !!}
+
 
     @if(count($errors) > 0)
 
@@ -41,7 +41,6 @@
 {{--        <input type="hidden" name="user_id" value="1">--}}
 {{--        <input type="submit" name="submit">--}}
 {{--    </form>--}}
-
 
 
 @endsection

@@ -17,8 +17,10 @@ class Post extends Model
 //    protected $table = 'posts';
 //    protected $primaryKey = 'id';
       protected $fillable = [
+          'user_id',
           'title',
-          'body'
+          'body',
+          'path'
           ];
 
     // Inverse One-to-One Relationship
@@ -41,15 +43,24 @@ class Post extends Model
           return $this->morphToMany(Tags::class, 'taggable');
       }
 
-      public function getPathAttribute($value){
-
-          return $this->directory . $value;
-      }
+//      public function getPathAttribute($value){
+//
+//          return $this->directory . $value;
+//      }
 
 //      public static function scopeLatest($query){
 //
 //          return $query->orderBy('id', 'asc')->get();
 //      }
+    public $directory = "/images/";
+//    public function getPathAttribute($value){
+//        $this->directory. $value;
+//    }
+
+//mutators helps to modify while saving data in database
+    public function getPathAttribute($value){
+        $this->directory.$value;
+    }
 
 
 }

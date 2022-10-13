@@ -8,6 +8,11 @@
 
     @foreach($posts as $post)
 
+        <div class="image-container">
+{{--            <img height="100" src="/images/{{$post->path}}" alt="photo">--}}
+            <img height="100" src="{{$post->path}}" alt="photo">
+        </div>
+
         <li><a href="/posts/{{$post->id}}" >{{$post->title}}</a> |
             {{$post->body}} <a href="/posts/{{$post->id}}/edit" >Edit</a> |
 {{--            <form method="POST" action='/posts/{{ $post->id }}'>--}}
